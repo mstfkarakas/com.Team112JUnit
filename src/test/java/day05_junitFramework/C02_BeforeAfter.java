@@ -1,9 +1,7 @@
 package day05_junitFramework;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import io.github.bonigarcia.wdm.webdriver.WebDriverBrowser;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +19,7 @@ public class C02_BeforeAfter {
     // title'lari yazdirin ve method'dan sonra driver'i kapatin
 
     WebDriver driver = new ChromeDriver(); // Bunu class level'a koyduk ki tearDown metodunda driver.close() yapabilelim.
+
     @Before
     public void setUp() {
         WebDriverManager.chromedriver().setup();
@@ -43,6 +42,7 @@ public class C02_BeforeAfter {
         System.out.println(driver.getTitle());
         Thread.sleep(2000);
     }
+
     @Test
     public void test02() throws InterruptedException {
         driver.get("https://www.wisequarter.com/");
@@ -50,6 +50,7 @@ public class C02_BeforeAfter {
         Thread.sleep(2000);
 
     }
+
     @Test
     public void test03() throws InterruptedException {
         driver.get("https://www.youtube.com/");
