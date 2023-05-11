@@ -18,10 +18,10 @@ public class C01_01BeforeClassAfterClass {
     // 2.method'da amazon'da nutella aratip, sonuclarin nutella icerdigini test edin
     // 3.method'da nutella arama sonuc sayisinin 50'den fazla oldugunu test edin
 
-    WebDriver driver;
+    static WebDriver driver;
 
-    @BeforeClass
-    public void setUp() {
+    @BeforeClass // @BeforeClass ve @AfterClass static olmak zorundadir.
+    public static void setUp() {
         driver = new ChromeDriver();
         WebDriverManager.chromedriver().setup();
         driver.manage().window().maximize();
@@ -47,16 +47,43 @@ public class C01_01BeforeClassAfterClass {
         WebElement searchBox = driver.findElement(By.id("twotabsearchtextbox"));
         searchBox.sendKeys("Nutella" + Keys.ENTER);
 
+        String expectedWord = "Nutella";
+        WebElement nutellaResults= driver.findElement(By.xpath("//h1[@class='a-size-base s-desktop-toolbar a-text-normal']"));
+        String nutellaResultsSTR = nutellaResults.getText();
+
+
+        if (nutellaResultsSTR.contains(expectedWord)) {
+            System.out.println("Nutella search test PASSED");
+        }else {
+            System.out.println("Nutella search test FAILED");
+
+        }
+
     }
 
     @Test
     public void test03() {
+        WebElement nutellaResults= driver.findElement(By.xpath("//h1[@class='a-size-base s-desktop-toolbar a-text-normal']"));
+        String nutellaResultsSTR = nutellaResults.getText();
+        System.out.println(nutellaResultsSTR);
+        String[] nutellaResultsArr = nutellaResultsSTR.split(" ");
+        String resultCountSTR = nutellaResultsArr[2];
 
+        int resultCountINT = Integer.parseInt(nutellaResultsSTR);
+
+        int expectedresultCount = 50;
+
+        if (resultCountINT>expectedresultCount) {
+            System.out.println("test 3 PASSED");
+        }else {
+            System.out.println("test 3 FAILED");
+
+        }
 
     }
 
     @AfterClass
-    public void tearDown() {
+    public static void tearDown() {
         driver.close();
     }
 
