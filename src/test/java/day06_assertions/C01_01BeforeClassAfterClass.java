@@ -39,7 +39,6 @@ public class C01_01BeforeClassAfterClass {
         } else {
             System.out.println("Entry to Amazon website FAILED");
         }
-
     }
 
     @Test
@@ -56,9 +55,7 @@ public class C01_01BeforeClassAfterClass {
             System.out.println("Nutella search test PASSED");
         }else {
             System.out.println("Nutella search test FAILED");
-
         }
-
     }
 
     @Test
@@ -77,15 +74,11 @@ public class C01_01BeforeClassAfterClass {
             System.out.println("test 3 PASSED");
         }else {
             System.out.println("test 3 FAILED");
-
         }
-
     }
 
     @AfterClass
     public static void tearDown() {
         driver.close();
     }
-
-
 }

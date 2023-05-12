@@ -12,8 +12,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class C04_BestbuyAssertion {
-    /*
+public class C04_04_BestbuyAssertion {
+      /*
     1) Bir class oluşturun: BestBuyAssertions
     2) https://www.bestbuy.com/ Adresine gidin farkli test method’lari olusturarak asagidaki testleri yapin
 
@@ -27,51 +27,48 @@ public class C04_BestbuyAssertion {
 
     @BeforeClass
     public static void setUp() {
-        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
+        WebDriverManager.chromedriver().setup();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.get("https://www.bestbuy.com");
+        driver.get("https://www.bestbuy.com/");
     }
 
     @AfterClass
-    public static void tearDown() {
+    public static void teaDown() {
         driver.close();
     }
 
     @Test
-    public void test01() { // Sayfa URL’inin https://www.bestbuy.com/ ‘a esit oldugunu test edin
-        String expectedURL = "https://www.bestbuy.com/";
+    public void test01() {
         String actualURL = driver.getCurrentUrl();
+        String expectedURL = "https://www.bestbuy.com/";
 
-        Assert.assertEquals(expectedURL, actualURL);
+        Assert.assertEquals(expectedURL, actualURL); // TRUE -> PASSED
+
     }
 
     @Test
-    public void test02() {  // ○ titleTest => Sayfa başlığının “Rest” içermediğini(contains) test edin
-
-        String notExpectedWord = "Rest";
+    public void test02() {
         String actualTitle = driver.getTitle();
+        String notExpectedWord = "Rest";
 
-        Assert.assertFalse(actualTitle.contains(notExpectedWord));
-
+        Assert.assertFalse("Title doesn't contain 'Rest'", actualTitle.contains(notExpectedWord));
     }
 
     @Test
-    public void test03() {  //  ○ logoTest => BestBuy logosunun görüntülendigini test edin
-        WebElement logoElement = driver.findElement(By.xpath("(//img[@class='logo'])[1]"));
+    public void test03() {
 
+        WebElement logoElement = driver.findElement(By.xpath("(//img[@class='logo'])[1]"));
         Assert.assertTrue(logoElement.isDisplayed());
 
     }
 
     @Test
-    public void test04() {  //  FrancaisLinkTest => Fransizca Linkin görüntülendiğini test edin
+    public void test04() {
 
-        WebElement frenchLink = driver.findElement(By.xpath("//*[text()='Français']"));
-        Assert.assertTrue(frenchLink.isDisplayed());
-
+        WebElement francaisLink = driver.findElement(By.xpath("//*[text()='Français']"));
+        Assert.assertTrue(francaisLink.isDisplayed());
     }
-
 
 }
