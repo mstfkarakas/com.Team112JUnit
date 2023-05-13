@@ -52,9 +52,14 @@ public class C05_FormDoldurma extends TestBase {
 
                 .perform();
 
+        // kaydol butonuna basin
         WebElement signUpButton = driver.findElement(By.name("websubmit"));
         signUpButton.click();
-                                        ;
-        ReusableMethods.wait(5);
+
+        // Kayit olamadiginizi test edin
+        // WebElement hataMesajElementi= driver.findElement(By.id("reg_error_inner"));
+        // Assert.assertTrue(hataMesajElementi.isDisplayed());
+
+        ReusableMethods.wait(10);
     }
 }
